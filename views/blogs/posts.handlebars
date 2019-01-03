@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="css/style.css">
+{{#each blogs}}
+<div class="container">
+    <div class="card card-body card-blog">
+        <h1 class="text">{{title}}</h1>
+        
+   
+        <p class="description">{{{description}}}</p>
+
+        <p><span>published at:</span> {{date}}</p>
+       
+    </div>
+</div>
+{{else}}
+    <p>No blogs listed</p>
+{{/each}}
