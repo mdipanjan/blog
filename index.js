@@ -9,6 +9,10 @@ const posts = require('./routes/posts');
 const works = require('./routes/works');
 const app = express();
 
+const db = require('./config/database');
+
+console.log(`app: ${app.get('env')}`);
+
 
 app.use('/about', about);
 
@@ -26,7 +30,7 @@ app.use(bodyParser.json())
 
 // mongodb connection
 
-mongoose.connect('mongodb://localhost/blogpage',{
+mongoose.connect(db.mongoURI,{
     useNewUrlParser: true 
 })
 .then(()=>console.log('connected to mongodb..'))
@@ -77,18 +81,6 @@ if(errors.length > 0){
 
 });
 
-
-// app.get('/posts',(req,res)=>{
-//     Blog.find({})
-//     .sort({date:'desc'})
-//     .then(blogs=>{
-//         res.render('blogs/posts',{
-//             blogs:blogs
-//         });
-    
-//     })
-
-// });
 
 
 //static files
