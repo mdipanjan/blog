@@ -43,6 +43,12 @@ require('./models/blogs');
 
 const Blog = mongoose.model('blog');
 
+
+
+app.get('/',(req,res)=>{
+    res.render('index');
+})
+
 //Form submit and redirect to post page
 
 app.post('/blogs',(req,res)=>{
@@ -102,9 +108,6 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 
-app.get('/',(req,res)=>{
-    res.render('index');
-})
 
 const port = process.env.PORT || 8000;
 app.listen(port,()=>{
