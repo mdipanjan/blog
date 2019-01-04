@@ -16,12 +16,10 @@ router.get('/',(req,res)=>{
         res.render('blogs/posts',{
             blogs:blogs
         });
-    
     })
-
-
-
-
 });
+
+
+
 
 module.exports = router;

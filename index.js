@@ -3,6 +3,7 @@ const path = require('path');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const mongoose= require('mongoose');
+const methodOverride = require('method-override')
 const about = require('./routes/about');
 const blogs = require('./routes/blogs');
 const posts = require('./routes/posts');
@@ -23,14 +24,19 @@ app.use('/posts', posts);
 app.use('/works', works);
 
 //Body parser middleware
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+
+//Method override
+app.use(methodOverride('_method'));
 
 
 
 // mongodb connection
 
 mongoose.connect(db.mongoURI,{
+ 
     useNewUrlParser: true 
 })
 .then(()=>console.log('connected to mongodb..'))
@@ -88,6 +94,42 @@ if(errors.length > 0){
 });
 
 
+
+app.get('/blogs/edit/:id',(req,res)=>{
+        Blog.findOne({
+            _id:req.params.id
+        })
+        .then(blog=>{
+            res.render('blogs/edit',{
+                blog:blog
+            });
+            //console.log(blog);
+          
+        });
+});
+
+app.put('/blogs/:id', (req,res)=>{
+        Blog.findOne({
+            _id:req.params.id
+        })
+        .then(blog=>{
+           blog.title = req.body.title;
+           blog.description = req.body.description;
+
+           blog.save()
+           .then(blog=>{
+               console.log(blog);
+               res.redirect('/posts')
+           })
+        })
+})
+app.delete('/blogs/:id', (req,res)=>{
+    Blog.remove({_id:req.params.id})
+    .then(()=>{
+        res.redirect('/posts');
+    })
+   
+})
 
 //static files
 

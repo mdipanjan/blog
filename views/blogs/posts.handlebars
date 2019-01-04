@@ -8,7 +8,13 @@
         <p class="description">{{{description}}}</p>
 
         <p><span>published at:</span> {{date}}</p>
-       
+        <a class="edit-button" href="/blogs/edit/{{id}}">Edit</a>
+
+        <form method="post" action="/blogs/{{id}}?_method=DELETE">
+        <input type="hidden" name="_method" value="DELETE">
+        <input class="delete-button" type="submit" value="Delete">
+            
+        </form>
     </div>
 </div>
 {{else}}
