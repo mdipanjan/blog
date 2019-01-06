@@ -3,7 +3,9 @@ const path = require('path');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const mongoose= require('mongoose');
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
+const flash = require('connect-flash');
+const session = require('express-session');
 const about = require('./routes/about');
 const blogs = require('./routes/blogs');
 const posts = require('./routes/posts');
@@ -31,6 +33,23 @@ app.use(bodyParser.json());
 //Method override
 app.use(methodOverride('_method'));
 
+//Expresss session middleware
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true,
+    
+  }));
+
+  app.use(flash()); 
+
+//Global variable
+app.use(function(req,res,next){
+    res.locals.success_msg= req.flash('success_msg');
+    res.locals.error_msg= req.flash('error_msg');
+    next();
+})
+
 
 
 // mongodb connection
@@ -49,6 +68,12 @@ require('./models/blogs');
 
 const Blog = mongoose.model('blog');
 
+///Handlebars helper
+
+const {
+    truncate,
+    stripTags
+} = require('./helpers/hbs');
 
 
 app.get('/',(req,res)=>{
@@ -83,8 +108,9 @@ if(errors.length > 0){
     new Blog(req.body)
     .save()
     .then(blog=>{
+        req.flash('success_msg','Blog Post Added');
         res.redirect('/posts');
-        console.log(blog);
+        // console.log(blog);
     })
     .catch(err=>console.error(err)); 
     
@@ -108,6 +134,23 @@ app.get('/blogs/edit/:id',(req,res)=>{
         });
 });
 
+
+app.get('/blogs/des/:id',(req,res)=>{
+    Blog.findOne({
+        _id:req.params.id
+    })
+    .then(blog=>{
+
+        console.log(blog);
+        res.render('blogs/descriptive',{
+            blog:blog
+         });
+    
+      
+    });
+});
+
+
 app.put('/blogs/:id', (req,res)=>{
         Blog.findOne({
             _id:req.params.id
@@ -118,14 +161,16 @@ app.put('/blogs/:id', (req,res)=>{
 
            blog.save()
            .then(blog=>{
-               console.log(blog);
+               //console.log(blog);
+               req.flash('success_msg','Blog Post Edited');
                res.redirect('/posts')
            })
         })
 })
 app.delete('/blogs/:id', (req,res)=>{
-    Blog.remove({_id:req.params.id})
+    Blog.deleteOne({_id:req.params.id})
     .then(()=>{
+        req.flash('success_msg','Blog Post Removed');
         res.redirect('/posts');
     })
    
@@ -146,7 +191,13 @@ app.use(express.static(path.join(__dirname,'public')));
 
 //express-handlebar middleware
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', exphbs({
+    helpers:{
+        truncate:truncate,
+        stripTags:stripTags
+    },
+    defaultLayout: 'main'
+}));
 app.set('view engine', 'handlebars');
 
 

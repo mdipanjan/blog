@@ -6,35 +6,18 @@
     padding:0;
     box-sizing: border-box;
 }
-
 html{
     font-size: 62.5%;
 }
+
+/* Homepage  */
+
 .main{
     background:url(/img/hero2.jpeg);
     background-size: cover;
     
 }
-
- 
-.text{
-    font-size:5rem;
-    text-align: center;
-    font-family: 'Oswald', sans-serif;
-    padding: 4rem;
-   
-} 
-.description{
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.5rem;
- 
-}
-.text-box{
-    position: absolute;
-    top: 30%;
-    left: 50%;
-}  
-.main{
+.primary{
     display: block;
     color: rgba(255, 255, 255, 0.87);
     font-weight: 300;
@@ -44,7 +27,7 @@ html{
     margin-left: 4rem;
    
 }
-.sub{
+.secondary{
     display: block;
     color: rgba(255, 255, 255, 0.87);
     font-weight: 300;
@@ -54,22 +37,90 @@ html{
     margin-left: 1rem;
    
 }
-.main:hover{
-    color: rebeccapurple;
+.text-box{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+} 
+.navbar{
+    background-color: rgba(0, 0, 0, 0.356);
+}
+/* .navbar-nav{
+    background-color: rebeccapurple;
+} */
+.nav-item{
+    font-size: 1.5rem;
+    padding: 2rem 2rem;
+    
+} 
+.nav-link,.navbar-brand{
+    color: white;
+}
+.navbar-toggler-icon{
+    color: white;
+}
+.active{
+padding-left: 5rem;
+}
+.text{
+    font-size:2rem;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    padding: 2rem;
+   
+} 
+.description{
+    font-family: 'Oswald', sans-serif;
+    color: rgb(66, 66, 66);
+    font-size: 1.2rem;
+ 
+}
+.des-link{
+    color: rgb(66, 66, 66); 
+}
+.des-link:hover{
+    text-decoration: none;
+    color: rgb(66, 66, 66);
+
+}
+.des-link:after{
+    color: rgb(66, 66, 66);
+}
+.contain{
+   
+    background-color:rgb(255, 145, 0);
+   
+}
+.card{
+    margin: 2rem 1rem;
+    background-color: rgba(243, 242, 227, 0.932);
+    -webkit-box-shadow: 4px 8px 25px -6px rgba(0,0,0,0.67);
+    -moz-box-shadow: 4px 8px 25px -6px rgba(0,0,0,0.67);
+    box-shadow: 4px 8px 25px -6px rgba(0,0,0,0.67);
+    height: 30rem;
+    width: 25rem;
+    float: left;
+}
+.card:hover{
+    cursor: pointer;
+}
+.card:hover{
+    transform: translateX(0.5rem 0.3rem);
     
 }
 .delete-button{
-    background-color: grey;
-    color: white;
-    padding: 0.2rem 2rem;
-    border-radius: 20px;
+    background-color:#d6d9db; 
     float: right;
+    border-radius: 10rem;
+    padding: 0.2rem 0.8rem;
+    border: none;
 }
 .delete-button:hover{
-    color: black;
-    background-color: rgb(49, 46, 46);
+    background-color:#c7c7c7ef; 
 }
 .edit-button{
-    font-size: 1.4rem;
-    display:inline-block
+    text-decoration: none;
+}
+.blog-des{
+    margin-top: 8rem;
 }

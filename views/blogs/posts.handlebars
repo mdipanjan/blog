@@ -1,22 +1,30 @@
 <link rel="stylesheet" href="css/style.css">
 {{#each blogs}}
-<div class="container">
-    <div class="card card-body card-blog">
-        <h1 class="text">{{title}}</h1>
-        
-   
-        <p class="description">{{{description}}}</p>
-
-        <p><span>published at:</span> {{date}}</p>
-        <a class="edit-button" href="/blogs/edit/{{id}}">Edit</a>
-
-        <form method="post" action="/blogs/{{id}}?_method=DELETE">
-        <input type="hidden" name="_method" value="DELETE">
-        <input class="delete-button" type="submit" value="Delete">
+<div class="c">
+    <div class="contain">
+    
+       <div class="card card-body card-blog">
+           <a class="des-link" href="/blogs/des/{{id}}">
+                <h1 class="text">{{title}}</h1>
+            </a>
             
-        </form>
-    </div>
-</div>
+            <p class="description">
+                
+                {{truncate description 150}}
+              
+                </p>
+          
+            <p><span>published at:</span> {{date}}</p>
+            <a class="edit-button" href="/blogs/edit/{{id}}">Edit</a>
+
+            <form method="post" action="/blogs/{{id}}?_method=DELETE">
+            <input type="hidden" name="_method" value="DELETE">
+            <input class="delete-button" type="submit" value="Delete">
+                
+            </form>
+    
+        </div> 
+</div>  
 {{else}}
     <p>No blogs listed</p>
 {{/each}}
