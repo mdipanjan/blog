@@ -85,7 +85,7 @@ app.get('/',(req,res)=>{
 
 //Form submit and redirect to post page
 
-app.post('/blogs', (req,res)=>{
+app.post('/blogs', auth,  (req,res)=>{
     
 let errors = [];
 
