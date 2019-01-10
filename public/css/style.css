@@ -59,6 +59,11 @@ html{
 .navbar-toggler-icon{
     color: white;
 }
+.navbar-toggler {
+    
+    border: 1px solid white;
+    border-radius: .25rem;
+}
 .active{
 padding-left: 5rem;
 }
@@ -123,4 +128,37 @@ padding-left: 5rem;
 }
 .blog-des{
     margin-top: 8rem;
+}
+
+.card-login{
+    background-color: rgba(0, 0, 0, 0.658);
+    /* position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-30%); */
+    
+}
+.btn-submit{
+    border-radius: 4rem;
+    padding: 0.5rem 3rem;
+    display: block;
+    margin-left: 6rem;
+    margin-top: 2rem;
+  
+}
+/* //Publish blog// */
+.publish{
+    padding-top: 4rem;
+}
+.form-control{
+    /* background-color: rgba(61, 23, 23, 0.11); */
+    border: none;
+    border-bottom: 2px solid red;
+}
+.form-control:focus{
+    border: none;
+}
+.title{
+    font-size: 2rem;
+    padding-top: 4rem;
 }

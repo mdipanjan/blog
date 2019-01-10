@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="css/style.css">
+
 
 
 <div class="container">
@@ -6,16 +6,54 @@
         <form class="" action="/blogs/{{blog.id}}?_method=PUT" method="post">
         <input type="hidden" name="_method" value="PUT">
             <div class="form-group">
-                <label for="title">Title</label>
+                <label for="title" class="title">Title</label>
                 <input type="text" class="form-control" id="title" placeholder="Title" name="title"  value="{{blog.title}}">
             </div>
             
             
             <div class="form-group">
-                <label for="description">Description</label>
+                <label for="description" class="title">Description</label>
                 <textarea  class="form-control" id="description" rows="5" name="description">{{blog.description}} </textarea>
             </div>
         
             <button type="submit" class="btn btn-primary">Save</button>
     </form>
 </div>
+
+
+<style>
+    .form-control{
+    /* background-color: rgba(61, 23, 23, 0.11); */
+    border: none;
+    border-bottom: 2px solid red;
+}
+.form-control:focus{
+    border: none;
+}
+.title{
+    font-size: 2rem;
+    padding-top: 2rem;
+}
+.navbar{
+    background-color: rgba(0, 0, 0, 0.356);
+}
+/* .navbar-nav{
+    background-color: rebeccapurple;
+} */
+.nav-item{
+    font-size: 1rem;
+    padding: 1rem 2rem;
+    
+} 
+.nav-link,.navbar-brand{
+    color: white;
+}
+.navbar-toggler-icon{
+    color: white;
+}
+.navbar-toggler {
+    
+    border: 1px solid white;
+    border-radius: .25rem;
+}
+</style>
